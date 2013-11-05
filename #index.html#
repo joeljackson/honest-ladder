@@ -1,0 +1,10 @@
+<html>
+<head>
+	<title>Ermahgerd, Ping Pong Ladder!</title>
+</head>
+<body data-ng-app="PingPong">
+
+  <div data-ng-controller=""
+  <h1>Ping Pong so cool!</h1>
+</body>
+</html>
