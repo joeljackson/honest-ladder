@@ -4,11 +4,12 @@
 </head>
 <body data-ng-app="PingPong", data-ng-controller="PlayersController">
   <div data-ng-repeat="player in data.players">
-    {{$index + 1}}: {{player.name}}
+    <input type="checkbox" data-ng-model="player.selected" data-input-disabled>{{$index + 1}}: {{player.name}}
   </div>
   <input data-ng-model="newUserName">
   <a href="#" data-ng-click="addUser()">Add Player</a>
   <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+  <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
   <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
   <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js" type="text/javascript"></script>
   <script src="scripts/main.js" type="text/javascript"></script>
