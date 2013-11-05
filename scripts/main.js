@@ -1,4 +1,15 @@
 angular.module("PingPong", ["firebase"]);
+
+angular.module("PingPong").filter("inMatchFilter", function(){
+  return function(player){
+    if(player.inMatch){
+      return "in-match";
+    }else{
+      return "";
+    }
+  }
+})
+
 angular.module("PingPong").controller("PlayersController", function($scope, angularFire) {
     var url = 'https://honest-ladder.firebaseio.com/';
     var ref = new Firebase(url);
