@@ -1,17 +1,27 @@
 <html>
 <head>
-	<title>Ermahgerd, Ping Pong Ladder!</title>
+    <title>Ermahgerd, Ping Pong Ladder!</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body data-ng-app="PingPong", data-ng-controller="PlayersController">
-  <div data-ng-repeat="player in data.players">
-    <input type="checkbox" data-ng-model="player.selected" data-input-disabled>{{$index + 1}}: {{player.name}}
-  </div>
-  <input data-ng-model="newUserName">
-  <a href="#" data-ng-click="addUser()">Add Player</a>
-  <script src="bower_components/angular/angular.js" type="text/javascript"></script>
-  <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
-  <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
-  <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js" type="text/javascript"></script>
-  <script src="scripts/main.js" type="text/javascript"></script>
+    <div data-ng-repeat="player in data.players" class="{{player.status}}">
+        <input type="checkbox" data-ng-model="player.selected" data-input-disabled>{{$index + 1}}: {{player.name}}
+    </div>
+    <input data-ng-model="newUserName">
+    <a href="#" data-ng-click="addUser()">Add Player</a>
+    <a href="#" data-ng-click="addMatch()">Add Match</a>
+
+    <ul>
+        <li data-ng-repeat="match in data.matches">
+            <a href="#" data-ng-click="selectWinner(match, match.player1)">{{match.player1.name}}</a> vs
+            <a href="#" data-ng-click="selectWinner(match, match.player2)">{{match.player2.name}}</a>
+        </li>
+    </ul>
+
+    <script src="bower_components/angular/angular.js" type="text/javascript"></script>
+    <script src="bower_components/underscore/underscore.js" type="text/javascript"></script>
+    <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script src="https://cdn.firebase.com/libs/angularfire/0.3.0/angularfire.min.js" type="text/javascript"></script>
+    <script src="scripts/main.js" type="text/javascript"></script>
 </body>
 </html>

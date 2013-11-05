@@ -1,21 +1,36 @@
 angular.module("PingPong", ["firebase"]);
-angular.module("PingPong").controller("PlayersController", function($scope, angularFire){
-  var url = 'https://honest-ladder.firebaseio.com/';
-  var ref = new Firebase(url);
-  $scope.data = {
-    players: []
-  }
+angular.module("PingPong").controller("PlayersController", function($scope, angularFire) {
+    var url = 'https://honest-ladder.firebaseio.com/';
+    var ref = new Firebase(url);
 
-  angularFire(ref, $scope, 'data');
+    $scope.data = {
+        players: [],
+        matches:[]
+    };
 
-  $scope.addUser = function() {
-    $scope.data.players.push({name: $scope.newUserName});
-  };
+    angularFire(ref, $scope, 'data');
+
+    $scope.addUser = function() {
+        $scope.data.players.push({name: $scope.newUserName});
+    };
+
+    $scope.addMatch = function() {
+        var selectedPlayers = _.filter($scope.data.players, function(player) { return player.selected;});
+        var player1 = selectedPlayers[0];
+        var player2 = selectedPlayers[1];
+        player1.status = 'in-match';
+        player2.status = 'in-match';
+        $scope.data.matches.push({player1: player1, player2: player2});
+    };
+
+    $scope.selectWinner = function(match, player) {
+        console.log(match, player, 'woot he won');
+    };
 });
 
 angular.module('PingPong').directive('inputDisabled', function($parse){
   return {
-    restrict: "A", 
+    restrict: "A",
     link: function(scope, element, attributes, controller){
       scope.$watch("scope.player", function(newValue, oldValue){
         if(_.filter(scope.$parent.data.players, function(player){ return player.selected;}).length >= 2 &&
@@ -24,7 +39,7 @@ angular.module('PingPong').directive('inputDisabled', function($parse){
         } else {
           element.removeAttr('disabled');
         }
-        
+
       }, true);
     }
   }
