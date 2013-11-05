@@ -3,7 +3,7 @@
 	<title>Ermahgerd, Ping Pong Ladder!</title>
 </head>
 <body data-ng-app="PingPong", data-ng-controller="PlayersController">
-  <div data-ng-repeat="player in players">
+  <div data-ng-repeat="player in data.players">
     {{$index + 1}}: {{player.name}}
   </div>
   <input data-ng-model="newUserName">
