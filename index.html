@@ -4,7 +4,7 @@
 </head>
 <body data-ng-app="PingPong", data-ng-controller="PlayersController">
   <div data-ng-repeat="player in players">
-    {{player.name}}
+    {{$index + 1}}: {{player.name}}
   </div>
   <input data-ng-model="newUserName">
   <a href="#" data-ng-click="addUser()">Add Player</a>
