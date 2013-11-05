@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body data-ng-app="PingPong", data-ng-controller="PlayersController">
-    <div data-ng-repeat="player in data.players" class="{{player | inMatchFilter}}">
+    <div data-ng-repeat="player in data.players" class="{{player | inMatchFilter:data.matches}}">
         <input type="checkbox" data-ng-model="player.selected" data-input-disabled>{{$index + 1}}: {{player.name}}
     </div>
     <input data-ng-model="newUserName">

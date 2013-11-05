@@ -1,11 +1,11 @@
 angular.module("PingPong", ["firebase"]);
 
 angular.module("PingPong").filter("inMatchFilter", function(){
-  return function(player){
-    if(player.inMatch){
+  return function(player, matches){
+    if(_.any(matches, function(match){ return match.player1.name == player.name || match.player2.name == player.name;})){
       return "in-match";
     }else{
-      return "";
+      return ""
     }
   }
 })
