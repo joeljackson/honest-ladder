@@ -29,8 +29,9 @@ angular.module("PingPong").controller("PlayersController", function($scope, angu
         var selectedPlayers = _.filter($scope.data.players, function(player) { return player.selected;});
         var player1 = selectedPlayers[0];
         var player2 = selectedPlayers[1];
-        player1.status = 'in-match';
-        player2.status = 'in-match';
+        player1.inMatch = true;
+        player2.inMatch = true;
+
         $scope.data.matches.push({player1: player1, player2: player2});
     };
 
